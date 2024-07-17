@@ -6,11 +6,19 @@ def desktop_items():
     print(os.listdir("/Users/ajay/Desktop"))
 
 def create_destination_folder():
-    os.makedirs("/Users/ajay/Desktop/")
+    directory_name = datetime.today().strftime('%Y-%m-%d %H:%M:%S')
+    #print(directory_name)
 
-def current_datetime():
-    dt = datetime.today()
-    print(dt)
+    directory = directory_name
+    parent_dir = "/Users/ajay/Desktop/"
+    path = os.path.join(parent_dir, directory)
+    os.mkdir(path)
+    print("Directory '%s' created" %directory)
+
+
+
+#def rename_destination_folder()
+
     
 
-current_datetime()
+create_destination_folder()
