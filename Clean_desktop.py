@@ -5,6 +5,7 @@ from datetime import date
 def desktop_items():
     files = os.listdir("/Users/ajay/Desktop")
     correct_files = [item for item in files if item[-4:] == '.png' or item[-4:] == '.mov']
+    #correct_files = [item for item in files if os.path.splitext(item)[1] in ['.png', '.mov']]
     #print(files)
     #for item in files:
        # if item[-4:] == '.png':
