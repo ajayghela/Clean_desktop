@@ -3,8 +3,11 @@ from datetime import date
 
 
 def desktop_items():
+    desktop_path = "/Users/ajay/Desktop"
     files = os.listdir("/Users/ajay/Desktop")
     correct_files = [item for item in files if item[-4:] == '.png' or item[-4:] == '.mov']
+    file_full_path = [os.path.join(desktop_path, item) for item in correct_files] 
+    print(file_full_path)
     #correct_files = [item for item in files if os.path.splitext(item)[1] in ['.png', '.mov']]
     #print(files)
     #for item in files:
@@ -12,7 +15,9 @@ def desktop_items():
         #    correct_files.append(item)
         #elif item[-4:] == '.mov':
         #    correct_files.append(item)
-    print(correct_files)
+    
+
+   
     
 
 def create_destination_folder():
