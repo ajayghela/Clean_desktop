@@ -7,7 +7,7 @@ def desktop_items():
     files = os.listdir("/Users/ajay/Desktop")
     correct_files = [item for item in files if item[-4:] == '.png' or item[-4:] == '.mov']
     file_full_path = [os.path.join(desktop_path, item) for item in correct_files] 
-    print(file_full_path)
+    return file_full_path
     #correct_files = [item for item in files if os.path.splitext(item)[1] in ['.png', '.mov']]
     #print(files)
     #for item in files:
@@ -15,10 +15,6 @@ def desktop_items():
         #    correct_files.append(item)
         #elif item[-4:] == '.mov':
         #    correct_files.append(item)
-    
-
-   
-    
 
 def create_destination_folder():
     directory_name = date.today().strftime('%Y-%m-%d')
@@ -28,5 +24,10 @@ def create_destination_folder():
     path = os.path.join(parent_dir, directory)
     os.mkdir(path)
     print("Directory '%s' created" %directory)
+
+file_path = desktop_items()
+
+#def moving_files():
+#   for item in file_path
     
-desktop_items()
+print(file_path)
