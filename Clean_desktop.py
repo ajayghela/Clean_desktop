@@ -10,8 +10,11 @@ def path():
 
 def create_destination_folder(path):
     #add if statement to the check if there actually dekstop items and for the folder
-    os.mkdir(path)
-    print("Directory '%s' created" %path)
+    if not os.path.exists(path):
+        os.mkdir(path)
+        print("Directory '%s' created" %path)
+    else: 
+        print("Directory '%s' already exists" %path)
     #error if folder has already been created
 
 def moving_items(path):
@@ -25,16 +28,7 @@ def moving_items(path):
             destination = os.path.join(path, item)
             os.rename(source, destination)
             print(f"Moved '{item}' to '{path}'")
-    #correct_files = [item for item in files if item[-4:] == '.png' or item[-4:] == '.mov']
-    #file_full_path = [os.path.join(desktop_path, item) for item in correct_files] 
-    #return file_full_path
-    #correct_files = [item for item in files if os.path.splitext(item)[1] in ['.png', '.mov']]
-    #print(files)
-    #for item in files:
-       # if item[-4:] == '.png':
-        #    correct_files.append(item)
-        #elif item[-4:] == '.mov':
-        #    correct_files.append(item)
+    
 
 destination_path = path()
 create_destination_folder(destination_path)
