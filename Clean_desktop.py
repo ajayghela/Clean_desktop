@@ -1,12 +1,24 @@
 import os
 from datetime import date
 
+
+
 def path():
     directory = date.today().strftime('%Y-%m-%d')
     #print(directory)
-    parent_dir = "/Users/ajay/Desktop/"
+    parent_dir = "/Users/ajayghela/Desktop/" # Change path for different computers
     path = os.path.join(parent_dir, directory)
     return path
+
+def file_count(path):
+    parent_dir = "/Users/ajayghela/Desktop/" # Change path for different computers
+    files = os.listdir(parent_dir)
+    file_count = [file for file in files]
+    count = 0
+    for i in file_count:
+        count += 1
+
+    return count, file_count
 
 def create_destination_folder(path):
     #add if statement to the check if there actually dekstop items and for the folder
@@ -31,5 +43,8 @@ def moving_items(path):
     
 
 destination_path = path()
-create_destination_folder(destination_path)
-moving_items(destination_path)
+n_files = file_count(destination_path)
+print(n_files)
+if n_files is > 0:
+    create_destination_folder(destination_path)
+    #moving_items(destination_path)
