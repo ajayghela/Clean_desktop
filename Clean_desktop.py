@@ -29,14 +29,6 @@ def create_destination_folder(path):
     else:
         print("There are no files to move and so no folder has been created")
 
-   # for item in files: 
-    #    if item.endswith('.png') or item.endswith('.mov') and not os.path.exists(path):
-     #           os.mkdir(path)
-      #          print("Directory '%s' created" %path)
-       # elif item[-4:] == '.png' or item[-4:] == '.mov':
-        #    print("Directory '%s' already exists" %path)
-    #error if folder has already been created
-
 def moving_items(path):
     desktop_path = "/Users/ajay/Desktop/"
     files = os.listdir(desktop_path)
@@ -51,8 +43,6 @@ def moving_items(path):
     
 
 destination_path = path()
-
-#n_files = file_count(destination_path)
-#print(n_files)
+file_check()
 create_destination_folder(destination_path)
-#moving_items(destination_path)
+moving_items(destination_path)
