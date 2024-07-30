@@ -9,24 +9,25 @@ def path():
     path = os.path.join(parent_dir, directory)
     return path
 
-def create_destination_folder(path):
-    #add if statement to the check if there actually dekstop items and for the folder
+def file_check():
     desktop_path = "/Users/ajay/Desktop/"
     files = os.listdir(desktop_path)
     #print(files)
-    files_present = 0
     for item in files:
         if item.endswith('.png') or item.endswith('.mov'):
             return True
-    while True: 
+    return False
+
+def create_destination_folder(path):
+    #add if statement to the check if there actually dekstop items and for the folder
+    if file_check() == True: 
         if not os.path.exists(path):
             os.mkdir(path)
             print("Directory '%s' created" %path)
-            break
         else:
             print("Directory '%s' already exists" %path)
-            break
-            
+    else:
+        print("There are no files to move and so no folder has been created")
 
    # for item in files: 
     #    if item.endswith('.png') or item.endswith('.mov') and not os.path.exists(path):
@@ -50,6 +51,7 @@ def moving_items(path):
     
 
 destination_path = path()
+
 #n_files = file_count(destination_path)
 #print(n_files)
 create_destination_folder(destination_path)
