@@ -2,7 +2,6 @@ import os
 from datetime import date
 
 
-
 def path():
     directory = date.today().strftime('%Y-%m-%d')
     #print(directory)
@@ -10,19 +9,31 @@ def path():
     path = os.path.join(parent_dir, directory)
     return path
 
-def file_count(path):
-    parent_dir = "/Users/ajay/Desktop/" # Change path for different computers
-    files = os.listdir(parent_dir)
-    file_count = len(files)
-    return file_count
-
 def create_destination_folder(path):
     #add if statement to the check if there actually dekstop items and for the folder
-    if not os.path.exists(path):
-        os.mkdir(path)
-        print("Directory '%s' created" %path)
-    else: 
-        print("Directory '%s' already exists" %path)
+    desktop_path = "/Users/ajay/Desktop/"
+    files = os.listdir(desktop_path)
+    #print(files)
+    files_present = 0
+    for item in files:
+        if item.endswith('.png') or item.endswith('.mov'):
+            return True
+    while True: 
+        if not os.path.exists(path):
+            os.mkdir(path)
+            print("Directory '%s' created" %path)
+            break
+        else:
+            print("Directory '%s' already exists" %path)
+            break
+            
+
+   # for item in files: 
+    #    if item.endswith('.png') or item.endswith('.mov') and not os.path.exists(path):
+     #           os.mkdir(path)
+      #          print("Directory '%s' created" %path)
+       # elif item[-4:] == '.png' or item[-4:] == '.mov':
+        #    print("Directory '%s' already exists" %path)
     #error if folder has already been created
 
 def moving_items(path):
@@ -39,8 +50,7 @@ def moving_items(path):
     
 
 destination_path = path()
-n_files = file_count(destination_path)
-print(n_files)
-if n_files > 2:
-    create_destination_folder(destination_path)
-    moving_items(destination_path)
+#n_files = file_count(destination_path)
+#print(n_files)
+create_destination_folder(destination_path)
+#moving_items(destination_path)
