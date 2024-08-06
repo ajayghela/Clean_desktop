@@ -1,4 +1,5 @@
 import os
+import csv
 from datetime import date
 
 
@@ -40,6 +41,9 @@ def moving_items(path):
             destination = os.path.join(path, item)
             os.rename(source, destination)
             print(f"Moved '{item}' to '{path}'")
+
+def write_to_log():
+
     
 
 destination_path = path()
