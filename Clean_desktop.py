@@ -1,5 +1,8 @@
 import os
 import csv
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
+
 from datetime import date
 
 
@@ -43,10 +46,15 @@ def moving_items(path):
             print(f"Moved '{item}' to '{path}'")
 
 def write_to_log():
+    gc = gspread.service_account()
+    sh = gc.open("Desktop log")
+    print(sh.sheet1.get('A1'))
+
 
     
 
-destination_path = path()
-file_check()
-create_destination_folder(destination_path)
-moving_items(destination_path)
+#destination_path = path()
+#file_check()
+#create_destination_folder(destination_path)
+#moving_items(destination_path)
+write_to_log()
