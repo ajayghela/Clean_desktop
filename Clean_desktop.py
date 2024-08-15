@@ -1,8 +1,6 @@
 import os
-import csv
 import gspread
-from oauth2client.service_account import ServiceAccountCredentials
-
+from google.oauth2.service_account import Credentials
 from datetime import date
 
 
@@ -45,10 +43,15 @@ def moving_items(path):
             os.rename(source, destination)
             print(f"Moved '{item}' to '{path}'")
 
+scopes = ["https://www.googleapis.com/auth/spreadsheets"]
+creds = Credentials.from_service_account_file("clean-desktop-creds.json", scopes=scopes)
+client = gspread.authorize(creds)
+
 def write_to_log():
-    gc = gspread.service_account()
-    sh = gc.open("Desktop log")
-    print(sh.sheet1.get('A1'))
+    sheet_id = "1jRr3lYKCHalej1SdiVyPHWr583DgrJQ4BpYPe7iHrKI"
+    sheet = client.open_by_key(sheet_id)
+    values = sheet.sheet1.row_values(1)
+    print(values)
 
 
     
