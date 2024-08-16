@@ -3,6 +3,10 @@ import gspread
 from google.oauth2.service_account import Credentials
 from datetime import date
 
+scopes = ["https://www.googleapis.com/auth/spreadsheets"]
+creds = Credentials.from_service_account_file("clean-desktop-creds.json", scopes=scopes)
+client = gspread.authorize(creds)
+
 
 def path():
     directory = date.today().strftime('%Y-%m-%d')
@@ -34,30 +38,30 @@ def create_destination_folder(path):
 def moving_items(path):
     desktop_path = "/Users/ajay/Desktop/"
     files = os.listdir(desktop_path)
+    srce_lst = []
+    dest_lst = []
     #print(files)
     for item in files: 
        if item[-4:] == '.png' or item[-4:] == '.mov':
            #print(item)
             source = os.path.join(desktop_path, item)
+            srce_lst.append(source)
             destination = os.path.join(path, item)
+            dest_lst.append(destination)
             os.rename(source, destination)
             print(f"Moved '{item}' to '{path}'")
+    return srce_lst, dest_lst
 
-scopes = ["https://www.googleapis.com/auth/spreadsheets"]
-creds = Credentials.from_service_account_file("clean-desktop-creds.json", scopes=scopes)
-client = gspread.authorize(creds)
-
-def write_to_log():
+def write_to_log(srce_lst, dest_lst):
     sheet_id = "1jRr3lYKCHalej1SdiVyPHWr583DgrJQ4BpYPe7iHrKI"
     sheet = client.open_by_key(sheet_id)
     values = sheet.sheet1.row_values(1)
     print(values)
 
-
     
 
-#destination_path = path()
-#file_check()
-#create_destination_folder(destination_path)
-#moving_items(destination_path)
-write_to_log()
+destination_path = path()
+file_check()
+create_destination_folder(destination_path)
+moving_items(destination_path)
+#write_to_log()
