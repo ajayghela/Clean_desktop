@@ -1,11 +1,11 @@
 import os
-import gspread
+from googleapiclient.discovery import build
 from google.oauth2.service_account import Credentials
 from datetime import date
 
 scopes = ["https://www.googleapis.com/auth/spreadsheets"]
 creds = Credentials.from_service_account_file("clean-desktop-creds.json", scopes=scopes)
-client = gspread.authorize(creds)
+service = build('sheets', 'v4', credentials=creds)
 
 
 def path():
