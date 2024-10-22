@@ -54,7 +54,7 @@ def moving_items(path):
 
 def write_to_log(srce_lst, col):
     sheet_id = "1jRr3lYKCHalej1SdiVyPHWr583DgrJQ4BpYPe7iHrKI"
-    sheet = client.open_by_key(sheet_id)
+    sheet = client.open_by_key(sheet_id).sheet1
     #sheet.update(f"A1:{len(srce_lst)}", srce_lst)
     range = f'!{col}'
     body = {'majorDimension': 'ROWS', 'values': srce_lst}
@@ -70,6 +70,7 @@ destination_path = path()
 #lts = moving_items(destination_path)
 file_check()
 create_destination_folder(destination_path)
-srce_lst, dest_lst = moving_items(destination_path)
-write_to_log(srce_lst, "B")
-write_to_log(dest_lst, "C")
+moving_items(destination_path)
+#srce_lst, dest_lst = moving_items(destination_path)
+#write_to_log(srce_lst, "B")
+#write_to_log(dest_lst, "C")
